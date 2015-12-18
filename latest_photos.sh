@@ -1,4 +1,16 @@
 #!/bin/bash
+FILE_a=
+FILE_b=
+FILE_c=
+EXT_a=
+EXT_b=
+EXT_c=
+PATH_a=
+PATH_b=
+PATH_c=
+image_a=
+image_b=
+image_c=
 
 FILE_a=`sqlite3 /Volumes/Gandalf/Pictures/Lightroom/Lightroom\ Catalog.lrcat "SELECT originalFilename from AgLibraryFile where id_local=(SELECT rootFile from adobe_images where captureTime=(SELECT max(captureTime) FROM adobe_images AS A JOIN (SELECT image from aglibrarykeywordimage where tag=(SELECT id_local from aglibrarykeyword where lc_name='auriana')) AS B ON A.id_local=B.image where pick=1.0));"`;
 
@@ -30,9 +42,9 @@ PATH_c=`sqlite3 /Volumes/Gandalf/Pictures/Lightroom/Lightroom\ Catalog.lrcat "SE
 
 image_c=$ROOT_c$PATH_c$FILE_c;
 
-/bin/cp $image_a /Users/admin/Code/geekTool/$FILE_a;
-/bin/cp $image_b /Users/admin/Code/geekTool/$FILE_b;
-/bin/cp $image_c /Users/admin/Code/geekTool/$FILE_c;
+/bin/cp $image_a /Users/admin/Code/geekTool/latest-lightroom-photos-geektool/$FILE_a;
+/bin/cp $image_b /Users/admin/Code/geekTool/latest-lightroom-photos-geektool/$FILE_b;
+/bin/cp $image_c /Users/admin/Code/geekTool/latest-lightroom-photos-geektool/$FILE_c;
 
 if [ "$EXT_a" = "dng" ]; then
     convert $FILE_a auriana.jpg;
